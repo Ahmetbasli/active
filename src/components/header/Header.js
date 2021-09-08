@@ -11,10 +11,10 @@ const Header = () => {
   return (
     <div>
       <AppBar className="header" position="static">
-        <Toolbar className="header__toolbar">
+        <div className="header__toolbar">
           <Leftside />
           <Rightside />
-        </Toolbar>
+        </div>
       </AppBar>
     </div>
   );

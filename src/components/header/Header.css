@@ -6,6 +6,7 @@ img {
 }
 
 .header__toolbar {
+  padding: 0 18px;
   display: flex;
   justify-content: space-between;
 }

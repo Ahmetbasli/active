@@ -1,12 +1,13 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-
+import Dropdown from "./dropdown/Dropdown";
+import "./Rightside.css";
 const Rightside = () => {
   return (
-    <div>
+    <div className="rightside">
+      <Button color="inherit">ContactUs </Button>
       <Button color="inherit">Sign In </Button>
-      <Button color="inherit">Sign In </Button>
-      <Button color="inherit">Sign In </Button>
+      <Dropdown />
     </div>
   );
 };
