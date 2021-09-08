@@ -27,7 +27,6 @@ export default function ControlledOpenSelect() {
   const [open, setOpen] = React.useState(false);
 
   const handleChange = (event) => {
-    console.log(event.target.value);
     i18n.changeLanguage(event.target.value);
     setLanguage(event.target.value);
   };
