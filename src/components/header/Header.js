@@ -11,8 +11,8 @@ import Leftside from "./left-side/Leftside";
 
 const Header = () => {
   return (
-    <div>
-      <AppBar className="header" position="static">
+    <div className="header">
+      <AppBar position="static">
         <div className="header__toolbar">
           <Leftside />
           <Rightside />

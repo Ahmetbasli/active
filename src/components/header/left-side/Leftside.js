@@ -29,7 +29,7 @@ const Leftside = () => {
         color="primary"
         aria-label="menu"
       >
-        <img src="images/myLogo.png" alt="logo" />
+        <img className="icon" src="images/myLogo.png" alt="logo" />
       </IconButton>
       <Typography variant="h6">
         {page !== "home" ? t("contactPageName") : "Scorp"}

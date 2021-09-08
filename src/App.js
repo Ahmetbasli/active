@@ -18,7 +18,7 @@ function App() {
 
           {/* contactUs */}
           <Route path="/contact">
-            contact
+            <ContactUs />
             {/* <ContactUs /> */}
           </Route>
         </Switch>
