@@ -12,7 +12,7 @@ const Rightside = () => {
 
   const navigateToContactPage = () => {
     history.push("/contact");
-    dispatch();
+    dispatch(adjustWhichPage("contact"));
   };
   return (
     <div className="rightside">

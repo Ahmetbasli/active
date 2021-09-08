@@ -9,6 +9,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     adjustWhichPage: (state, action) => {
+      console.log(action.payload);
       state.page = action.payload;
     },
   },
