@@ -1,13 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {};
+const initialState = {
+  page: "home",
+};
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    adjustWhichPage: (state, action) => {
+      state.page = action.payload;
+    },
+  },
 });
 
-export const selectItems = (state) => state.basket.items;
+export const { adjustWhichPage } = userSlice.actions;
+
+export const selectWhichPage = (state) => state.user.page;
 
 export default userSlice.reducer;
