@@ -1,12 +1,20 @@
 import React from "react";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+
 import Dropdown from "./dropdown/Dropdown";
 import "./Rightside.css";
 const Rightside = () => {
   return (
     <div className="rightside">
-      <Button color="inherit">ContactUs </Button>
-      <Button color="inherit">Sign In </Button>
+      <div className="buttons">
+        <Button color="inherit">Login </Button>
+        <Router>
+          <Link className="link" to="/contact">
+            Contact Us
+          </Link>
+        </Router>
+      </div>
       <Dropdown />
     </div>
   );
