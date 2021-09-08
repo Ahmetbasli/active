@@ -13,8 +13,7 @@ function App() {
         <Switch>
           {/* home */}
           <Route exact path="/">
-            home
-            {/* <Home /> */}
+            <Home />
           </Route>
 
           {/* contactUs */}

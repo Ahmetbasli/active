@@ -1,10 +1,12 @@
 import React from "react";
+//style imports
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-
+//language imports
+import i18n from "../../../../helpers/languageStore";
 const useStyles = makeStyles((theme) => ({
   button: {
     display: "block",
@@ -25,6 +27,8 @@ export default function ControlledOpenSelect() {
   const [open, setOpen] = React.useState(false);
 
   const handleChange = (event) => {
+    console.log(event.target.value);
+    i18n.changeLanguage(event.target.value);
     setLanguage(event.target.value);
   };
 
