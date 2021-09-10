@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  user: null,
+  user: JSON.parse(sessionStorage.getItem("user")),
   page: "home",
   language: navigator.language.split("-")[0],
   IsLoginModalOpen: false,
@@ -12,11 +12,9 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     adjustWhichPage: (state, action) => {
-      console.log(action.payload);
       state.page = action.payload;
     },
     adjustLanguage: (state, action) => {
-      console.log(state.language);
       state.language = action.payload;
     },
     setUser: (state, action) => {
