@@ -4,10 +4,11 @@ import { initReactI18next } from "react-i18next";
 const translationsEn = {
   homeTitle: "About Scorp",
   homeText:
-    "It was created in 2014 by 4 Turkish university students, including Sercan Işık and İzzet Zakuto. Scorp is designed to be a topic driven app. The content in Scorp consists of 15-second videos. A live broadcast feature was added in 2015. After its success in Turkey, Scorp continued its activities as an initiative aimed at foreign markets. With more than 10 million users in 2017, it was named one of the most successful startups by Wired UK. At Brandweek, an event organized in cooperation with Google Turkey towards 2017, Ekşi Sözlük founder Fatih Aker, Scorp co-founder Sercan Işık, Scorp General Manager Batu Uğrasız had the opportunity to introduce users who produce organic content to Turkish advertisers about new media and organic content. Penti, the first women's brand to use Scorp towards the end of 2017, made more than 4 million young people say #İçindenGeldi and integrated its new commercial into digital, resulting in 764 videos uploaded by users to the relevant topic in Scorp at the end of the campaign, reaching 4,400,583 people. Eight times the success of the campaign target, the advertising agency Utopic Farm won an award thanks to the project.",
+    "It was established in 2014 by 4 Turkish university students, including Sercan Işık and İzzet Zakuto. Scorp is designed to be a topic driven app. The content in Scorp consists of 15-second videos. A live broadcast feature was added in 2015. After its success in Turkey, Scorp continued its activities as an initiative aimed at foreign markets. With more than 10 million users in 2017, it was named one of the most successful startups by Wired UK. At Brandweek, an event organized in cooperation with Google Turkey towards 2017, Ekşi Sözlük founder Fatih Aker, Scorp co-founder Sercan Işık, Scorp General Manager Batu Uğrasız had the opportunity to introduce users who produce organic content to Turkish advertisers about new media and organic content. Penti, the first women's brand to use Scorp towards the end of 2017, made more than 4 million young people say #İçindenGeldi and integrated its new commercial into digital, resulting in 764 videos uploaded by users to the relevant topic in Scorp at the end of the campaign, reaching 4,400,583 people. Eight times the success of the campaign target, the advertising agency Utopic Farm won an award thanks to the project.",
   contactPageName: "Contact Page",
   contactButton: "Contact Us",
   login: "Login",
+  logout: "Log out",
   emailAdress: "Email Address",
   cancel: "Cancel",
   name: "Name",
@@ -21,8 +22,9 @@ const translationsTr = {
   contactPageName: "İletişim sayfası",
   contactButton: "İletişime geç",
   login: "Giriş yap",
+  logout: "Çıkış yap",
   emailAdress: "Email Adresi",
-  cancel: "Çıkış",
+  cancel: "Çıkış yap",
   name: "İsim",
   password: "Şifre",
 };
