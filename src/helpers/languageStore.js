@@ -13,6 +13,7 @@ const translationsEn = {
   cancel: "Cancel",
   name: "Name",
   password: "Password",
+  footer: "Footer",
 };
 
 const translationsTr = {
@@ -27,6 +28,7 @@ const translationsTr = {
   cancel: "Çıkış yap",
   name: "İsim",
   password: "Şifre",
+  footer: "Alt Bilgi",
 };
 
 i18n.use(initReactI18next).init({
