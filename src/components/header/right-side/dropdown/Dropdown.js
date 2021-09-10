@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+//store
+import { selectLanguage, adjustLanguage } from "../../../../slices/userSlice";
 //style imports
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -22,13 +25,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ControlledOpenSelect() {
+  const dispatch = useDispatch();
   const classes = useStyles();
-  const [language, setLanguage] = React.useState("en");
-  const [open, setOpen] = React.useState(false);
+  const siteLanguage = useSelector(selectLanguage);
+  const [open, setOpen] = useState(false);
 
   const handleChange = (event) => {
-    i18n.changeLanguage(event.target.value);
-    setLanguage(event.target.value);
+    dispatch(adjustLanguage(event.target.value));
   };
 
   const handleClose = () => {
@@ -55,7 +58,7 @@ export default function ControlledOpenSelect() {
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={language}
+          value={siteLanguage}
           onChange={handleChange}
         >
           <MenuItem value={"en"}>English</MenuItem>

@@ -31,7 +31,7 @@ const Leftside = () => {
       >
         <img className="icon" src="images/myLogo.png" alt="logo" />
       </IconButton>
-      <Typography variant="h6">
+      <Typography noWrap variant="subtitle1">
         {page !== "home" ? t("contactPageName") : "Scorp"}
       </Typography>
     </div>
