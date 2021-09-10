@@ -5,7 +5,6 @@ const initialState = {
   page: "home",
   language: navigator.language.split("-")[0],
   IsLoginModalOpen: false,
-  IsHamburgerMenuOpen: false,
 };
 
 export const userSlice = createSlice({
@@ -23,9 +22,6 @@ export const userSlice = createSlice({
     },
     toggleIsLoginModalOpen: (state, action) => {
       state.IsLoginModalOpen = action.payload;
-    },
-    toogleIsHamburgerMenuOpen: (state, action) => {
-      state.IsHamburgerMenuOpen = action.payload;
     },
   },
 });
