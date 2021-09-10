@@ -45,33 +45,46 @@ const Rightside = () => {
         </Button>
       </div>
       <Dropdown />
+
       {/* modal form */}
       <Dialog
         open={isModalOpen}
         onClose={closeModal}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="form-dialog-title">{t("login")}</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="Email Address"
+            label={t("name")}
+            type="text"
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="emailAdress"
+            label={t("emailAdress")}
             type="email"
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="password"
+            label={t("password")}
+            type="password"
             fullWidth
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={closeModal} color="primary">
-            Cancel
+            {t("cancel")}
           </Button>
           <Button onClick={closeModal} color="primary">
-            Login
+            {t("login")}
           </Button>
         </DialogActions>
       </Dialog>
