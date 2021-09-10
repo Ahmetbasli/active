@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 //components
 import Rightside from "./right-side/Rightside";
 import Leftside from "./left-side/Leftside";
+import RightSideHamburger from "./right-side-hamburger/RİghtSİdeHamburger";
 //styles
-import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import MenuIcon from "@material-ui/icons/Menu";
 import "./Header.css";
 
 const Header = () => {
@@ -24,7 +22,7 @@ const Header = () => {
       <AppBar position="static">
         <div className="header__toolbar">
           <Leftside />
-          {window.innerWidth > 768 ? <Rightside /> : <RightSideHamburger />}
+          {screenWidth > 768 ? <Rightside /> : <RightSideHamburger />}
         </div>
       </AppBar>
     </div>

@@ -19,7 +19,6 @@ import Button from "@material-ui/core/Button";
 
 const Modal = () => {
   const { t } = useTranslation();
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const IsLoginModalOpen = useSelector(selectIsLoginModalOpen);
 
   const dispatch = useDispatch();
@@ -32,8 +31,9 @@ const Modal = () => {
     dispatch(toggleIsLoginModalOpen(false));
   };
   const sendFieldsData = () => {
+    const name = nameField.current.value;
     const userInfo = {
-      name: nameField.current.value,
+      name: name.charAt(0).toUpperCase() + name.slice(1).toLowerCase(),
       email: emailField.current.value,
       password: passwordField.current.value,
     };
