@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //store
 import { selectLanguage, adjustLanguage } from "../../../../slices/userSlice";
+// language imports
+import i18n from "../../../../helpers/languageStore";
 //style imports
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-//language imports
-import i18n from "../../../../helpers/languageStore";
+
 const useStyles = makeStyles((theme) => ({
   button: {
     display: "block",
@@ -32,6 +33,7 @@ export default function ControlledOpenSelect() {
 
   const handleChange = (event) => {
     dispatch(adjustLanguage(event.target.value));
+    i18n.changeLanguage(event.target.value);
   };
 
   const handleClose = () => {
