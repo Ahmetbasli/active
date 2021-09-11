@@ -8,7 +8,7 @@ import Leftside from "./left-side/Leftside";
 import RightSideHamburger from "./right-side-hamburger/RightSideHamburger";
 // styles
 import AppBar from "@material-ui/core/AppBar";
-import "./Header.css";
+import styles from "./Header.module.css";
 
 const Header = () => {
   // react-hooks
@@ -20,13 +20,14 @@ const Header = () => {
       setScreenWidth(window.innerWidth);
     });
     return () => {
+      // prevent memory leak
       window.removeEventListener("resize", () => {});
     };
   }, []);
   return (
-    <div className="header">
+    <div className={styles.header}>
       <AppBar position="static">
-        <div className="header__toolbar">
+        <div className={styles.toolbar}>
           <Leftside />
           {screenWidth > 768 ? <Rightside /> : <RightSideHamburger />}
         </div>

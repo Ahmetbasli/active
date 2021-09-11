@@ -9,13 +9,19 @@ import {
 // language
 import { useTranslation } from "react-i18next";
 // styles
+import { makeStyles } from "@material-ui/core/styles";
+
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
-
+const useStyles = makeStyles((theme) => ({
+  textField: {
+    marginBottom: "24px",
+  },
+}));
 const Modal = () => {
   // react-hooks
   const IsLoginModalOpen = useSelector(selectIsLoginModalOpen);
@@ -25,6 +31,8 @@ const Modal = () => {
   const passwordField = useRef();
   // language
   const { t } = useTranslation();
+  // styles
+  const classes = useStyles();
 
   // functions
   const closeModal = () => {
@@ -53,6 +61,7 @@ const Modal = () => {
         <DialogTitle id="form-dialog-title">{t("login")}</DialogTitle>
         <DialogContent>
           <TextField
+            className={classes.textField}
             autoFocus
             margin="dense"
             id="name"
@@ -62,6 +71,7 @@ const Modal = () => {
             inputRef={nameField}
           />
           <TextField
+            className={classes.textField}
             autoFocus
             margin="dense"
             id="emailAdress"
@@ -71,6 +81,7 @@ const Modal = () => {
             fullWidth
           />
           <TextField
+            className={classes.textField}
             autoFocus
             margin="dense"
             id="password"

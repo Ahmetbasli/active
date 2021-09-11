@@ -21,8 +21,7 @@ import EmailIcon from "@material-ui/icons/Email";
 import LogOut from "@material-ui/icons/ExitToApp";
 import Button from "@material-ui/core/Button";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-
-import "./Rightside.css";
+import styles from "./Rightside.module.css";
 
 const Rightside = () => {
   // react-hooks
@@ -49,15 +48,15 @@ const Rightside = () => {
   };
 
   return (
-    <div className="rightside">
-      <div className="buttons">
+    <div className={styles.rightside}>
+      <div className={styles.buttons}>
         {!userInfo ? (
           <Button onClick={openModal} color="inherit">
             {t("login")}
           </Button>
         ) : (
           <div
-            className="name"
+            className={styles.name}
             onMouseEnter={() => setIsMenuShown(true)}
             onMouseLeave={() => setIsMenuShown(false)}
           >
@@ -69,11 +68,11 @@ const Rightside = () => {
           <div
             onMouseEnter={() => setIsMenuShown(true)}
             onMouseLeave={() => setIsMenuShown(false)}
-            className="popOver"
+            className={styles.popOver}
           >
             <ListItem>
               <ListItemIcon>
-                <EmailIcon className="emailIcon" />
+                <EmailIcon className={styles.emailIcon} />
               </ListItemIcon>
               <ListItemText primary={userInfo.email} />
             </ListItem>

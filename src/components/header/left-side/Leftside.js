@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 // styles
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import "./Leftside.css";
+import styles from "./Leftside.module.css";
 
 const Leftside = () => {
   // react-hooks
@@ -25,14 +25,14 @@ const Leftside = () => {
   };
 
   return (
-    <div className="leftside">
+    <div className={styles.leftside}>
       <IconButton
         onClick={navigateToHomePage}
         edge="start"
         color="primary"
         aria-label="menu"
       >
-        <img className="icon" src="images/myLogo.png" alt="logo" />
+        <img className={styles.icon} src="images/myLogo.png" alt="logo" />
       </IconButton>
       <Typography noWrap variant="h6">
         {page !== "home" ? t("contactPageName") : "Scorp"}

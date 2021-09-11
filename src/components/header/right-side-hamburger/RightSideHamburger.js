@@ -31,8 +31,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import ContactMailIcon from "@material-ui/icons/ContactMail";
 import PersonIcon from "@material-ui/icons/Person";
 import LogOut from "@material-ui/icons/ExitToApp";
-import "./RightSideHamburger.css";
-
+import styles from "./RightSideHamburger.module.css";
 const useStyles = makeStyles({
   list: {
     width: 250,
@@ -91,7 +90,7 @@ const RightSİdeHamburger = () => {
     sessionStorage.removeItem("user");
   };
   return (
-    <div className="hamburger">
+    <div className={styles.hamburger}>
       <MenuIcon onClick={openHamburgerMenu} className="menuIcon" />
       <Drawer
         anchor="right"
