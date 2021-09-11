@@ -8,6 +8,7 @@ import {
   selectLanguage,
   selectUser,
   toggleIsLoginModalOpen,
+  setUser,
 } from "../../../slices/userSlice";
 //components
 import Modal from "../right-side/modal/Modal";
@@ -83,6 +84,10 @@ const RightSİdeHamburger = () => {
     closeHamburgerMenu();
     dispatch(toggleIsLoginModalOpen(true));
   };
+  const makeUserLogout = () => {
+    dispatch(setUser(null));
+    sessionStorage.removeItem("user");
+  };
   return (
     <div className="hamburger">
       <MenuIcon onClick={openHamburgerMenu} className="menuIcon" />
@@ -129,7 +134,7 @@ const RightSİdeHamburger = () => {
               </ListItemIcon>
               <ListItemText primary={userInfo.email} />
             </ListItem>
-            <ListItem button>
+            <ListItem button onClick={makeUserLogout}>
               <ListItemIcon>
                 <LogOut />
               </ListItemIcon>
@@ -144,7 +149,9 @@ const RightSİdeHamburger = () => {
               <GTranslateIcon />
             </ListItemIcon>
             <ListItemText
-              primary={siteLanguage !== "tr" ? "Türkçe" : "English"}
+              primary={
+                siteLanguage !== "tr" ? "Türkçe kullan" : " Use in English"
+              }
             />
           </ListItem>
         </List>

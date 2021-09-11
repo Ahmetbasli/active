@@ -14,6 +14,7 @@ const translationsEn = {
   name: "Name",
   password: "Password",
   footer: "Footer",
+  languageOption: "Use in English",
 };
 
 const translationsTr = {
@@ -29,6 +30,7 @@ const translationsTr = {
   name: "İsim",
   password: "Şifre",
   footer: "Alt Bilgi",
+  languageOption: "Türkçe kullan",
 };
 
 i18n.use(initReactI18next).init({

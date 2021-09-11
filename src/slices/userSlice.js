@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: JSON.parse(sessionStorage.getItem("user")),
   page: "home",
-  language: navigator.language.split("-")[0],
+  language: "en",
   IsLoginModalOpen: false,
 };
 
