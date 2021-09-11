@@ -23,7 +23,12 @@
   top: 50px;
   padding: 15px;
 }
-
+.emailIcon {
+  color: white;
+}
+.logoutIcon {
+  color: white;
+}
 .link {
   margin-left: 10px;
   color: #fff;

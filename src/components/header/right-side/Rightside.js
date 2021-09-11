@@ -12,8 +12,16 @@ import Modal from "./modal/Modal";
 import { useTranslation } from "react-i18next";
 import Dropdown from "./dropdown/Dropdown";
 //styles
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import EmailIcon from "@material-ui/icons/Email";
+import LogOut from "@material-ui/icons/ExitToApp";
+
 import Button from "@material-ui/core/Button";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+
 import "./Rightside.css";
 
 const Rightside = () => {
@@ -59,10 +67,18 @@ const Rightside = () => {
             onMouseLeave={() => setIsMenuShown(false)}
             className="popOver"
           >
-            <h5>{userInfo.email}</h5>
-            <Button onClick={makeUserLogout} color="inherit">
-              {t("logout")}
-            </Button>
+            <ListItem>
+              <ListItemIcon>
+                <EmailIcon className="emailIcon" />
+              </ListItemIcon>
+              <ListItemText primary={userInfo.email} />
+            </ListItem>
+            <ListItem button onClick={makeUserLogout}>
+              <ListItemIcon>
+                <LogOut className="logoutIcon" />
+              </ListItemIcon>
+              <ListItemText primary={t("logout")} />
+            </ListItem>
           </div>
         )}
 
