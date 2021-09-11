@@ -17,6 +17,7 @@ import i18n from "../../../helpers/languageStore";
 import { useTranslation } from "react-i18next";
 // styles
 import MenuIcon from "@material-ui/icons/Menu";
+import Button from "@material-ui/core/Button";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
@@ -36,8 +37,8 @@ const useStyles = makeStyles({
   list: {
     width: 250,
   },
-  fullList: {
-    width: "auto",
+  menuICon: {
+    cursor: "default",
   },
   contactButton: {
     marginRight: "5px",
@@ -91,7 +92,9 @@ const RightSİdeHamburger = () => {
   };
   return (
     <div className={styles.hamburger}>
-      <MenuIcon onClick={openHamburgerMenu} className="menuIcon" />
+      <Button color="inherit" onClick={openHamburgerMenu}>
+        <MenuIcon />
+      </Button>
       <Drawer
         anchor="right"
         open={IsHamburgerMenuOpen}

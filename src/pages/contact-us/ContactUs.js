@@ -3,11 +3,13 @@ import React from "react";
 import Form from "../../components/form/Form";
 // language
 import { useTranslation } from "react-i18next";
+//styles
+import styles from "./ContactUs.module.css";
 
 const ContactUs = () => {
   const { t } = useTranslation();
   return (
-    <div>
+    <div className={styles.container}>
       <h1>{t("contactPageName")}</h1>
       <Form />
     </div>
