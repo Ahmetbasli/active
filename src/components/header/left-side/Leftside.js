@@ -1,21 +1,24 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-// slices
-import { adjustWhichPage, selectWhichPage } from "../../../slices/userSlice";
 import { useHistory } from "react-router-dom";
-// language imports
+// store
+import { adjustWhichPage, selectWhichPage } from "../../../slices/userSlice";
+// language
 import { useTranslation } from "react-i18next";
-//styles
+// styles
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import "./Leftside.css";
 
 const Leftside = () => {
-  const history = useHistory();
+  // react-hooks
   const dispatch = useDispatch();
+  const history = useHistory();
   const page = useSelector(selectWhichPage);
+  // language
   const { t } = useTranslation();
 
+  // functions
   const navigateToHomePage = () => {
     history.push("/");
     dispatch(adjustWhichPage("home"));

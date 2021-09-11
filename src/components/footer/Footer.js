@@ -1,8 +1,10 @@
 import React from "react";
-import "./Footer.css";
-// language imports
+// language
 import { useTranslation } from "react-i18next";
+// styles
+import "./Footer.css";
 const Footer = () => {
+  // language
   const { t } = useTranslation();
 
   return (

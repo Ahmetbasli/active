@@ -1,36 +1,39 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+// store
 import {
   adjustWhichPage,
   selectUser,
   setUser,
   toggleIsLoginModalOpen,
 } from "../../../slices/userSlice";
-import { useHistory } from "react-router-dom";
+// components
 import Modal from "./modal/Modal";
-// language imports
-import { useTranslation } from "react-i18next";
 import Dropdown from "./dropdown/Dropdown";
+// language
+import { useTranslation } from "react-i18next";
 //styles
-import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import EmailIcon from "@material-ui/icons/Email";
 import LogOut from "@material-ui/icons/ExitToApp";
-
 import Button from "@material-ui/core/Button";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import "./Rightside.css";
 
 const Rightside = () => {
+  // react-hooks
   const dispatch = useDispatch();
-  const history = useHistory();
-  const { t } = useTranslation();
   const userInfo = useSelector(selectUser);
+  const history = useHistory();
   const [IsMenuShown, setIsMenuShown] = useState(false);
+  // language
+  const { t } = useTranslation();
 
+  // functions
   const navigateToContactPage = () => {
     history.push("/contact");
     dispatch(adjustWhichPage("contact"));
@@ -39,6 +42,7 @@ const Rightside = () => {
   const openModal = () => {
     dispatch(toggleIsLoginModalOpen(true));
   };
+
   const makeUserLogout = () => {
     dispatch(setUser(null));
     sessionStorage.removeItem("user");

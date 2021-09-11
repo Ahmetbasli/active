@@ -1,5 +1,5 @@
 import React from "react";
-// language imports
+// language
 import { useTranslation } from "react-i18next";
 
 const ContactUs = () => {

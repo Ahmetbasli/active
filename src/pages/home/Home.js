@@ -1,12 +1,12 @@
 import React from "react";
-//redux imports
 import { useSelector } from "react-redux";
-// language imports
+// language
 import { useTranslation } from "react-i18next";
 //styles
 import "./Home.css";
 
 const Home = () => {
+  // language
   const { t } = useTranslation();
   return (
     <div className="home">

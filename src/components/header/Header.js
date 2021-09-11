@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-//store
+// store
 import { selectLanguage } from "../../slices/userSlice";
-//components
+// components
 import Rightside from "./right-side/Rightside";
 import Leftside from "./left-side/Leftside";
 import RightSideHamburger from "./right-side-hamburger/RightSideHamburger";
-
-//styles
+// styles
 import AppBar from "@material-ui/core/AppBar";
 import "./Header.css";
 
 const Header = () => {
+  // react-hooks
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const siteLanguage = useSelector(selectLanguage);
 
+  // functions
   useEffect(() => {
     window.addEventListener("resize", () => {
       setScreenWidth(window.innerWidth);

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-//store
+// store
 import { selectLanguage, adjustLanguage } from "../../../../slices/userSlice";
-// language imports
+// language
 import i18n from "../../../../helpers/languageStore";
-//style imports
+// style
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -26,11 +26,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ControlledOpenSelect() {
+  // react-hooks
   const dispatch = useDispatch();
-  const classes = useStyles();
   const siteLanguage = useSelector(selectLanguage);
   const [open, setOpen] = useState(false);
+  // styles
+  const classes = useStyles();
 
+  // functions
   const handleChange = (event) => {
     dispatch(adjustLanguage(event.target.value));
     i18n.changeLanguage(event.target.value);

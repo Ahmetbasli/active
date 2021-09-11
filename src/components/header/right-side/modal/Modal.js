@@ -1,15 +1,14 @@
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+// store
 import {
   selectIsLoginModalOpen,
   setUser,
   toggleIsLoginModalOpen,
 } from "../../../../slices/userSlice";
-
-// language imports
+// language
 import { useTranslation } from "react-i18next";
-//styles
+// styles
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -18,18 +17,20 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 
 const Modal = () => {
-  const { t } = useTranslation();
+  // react-hooks
   const IsLoginModalOpen = useSelector(selectIsLoginModalOpen);
-
   const dispatch = useDispatch();
-
   const nameField = useRef();
   const emailField = useRef();
   const passwordField = useRef();
+  // language
+  const { t } = useTranslation();
 
+  // functions
   const closeModal = () => {
     dispatch(toggleIsLoginModalOpen(false));
   };
+
   const sendFieldsData = () => {
     const name = nameField.current.value;
     const userInfo = {
@@ -41,6 +42,7 @@ const Modal = () => {
     sessionStorage.setItem("user", JSON.stringify(userInfo));
     dispatch(toggleIsLoginModalOpen(false));
   };
+
   return (
     <div>
       <Dialog
