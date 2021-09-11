@@ -46,18 +46,18 @@ const useStyles = makeStyles({
 });
 
 const RightSİdeHamburger = () => {
+  // styles
+  const classes = useStyles();
+  // language
+  const { t } = useTranslation();
   // react-hooks
   const dispatch = useDispatch();
   const siteLanguage = useSelector(selectLanguage);
   const userInfo = useSelector(selectUser);
   const history = useHistory();
-  // language
-  const { t } = useTranslation();
-  // styles
-  const classes = useStyles();
-
   const [IsHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
 
+  // functions
   const openHamburgerMenu = () => {
     setIsHamburgerMenuOpen(true);
   };

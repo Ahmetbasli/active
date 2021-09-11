@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 120,
   },
   label: {
-    color: "#fff",
+    color: "#212121",
   },
 }));
 

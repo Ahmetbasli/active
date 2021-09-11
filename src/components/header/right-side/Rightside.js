@@ -14,6 +14,8 @@ import Dropdown from "./dropdown/Dropdown";
 // language
 import { useTranslation } from "react-i18next";
 //styles
+import { makeStyles } from "@material-ui/core/styles";
+
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -22,15 +24,24 @@ import LogOut from "@material-ui/icons/ExitToApp";
 import Button from "@material-ui/core/Button";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import styles from "./Rightside.module.css";
-
+const useStyles = makeStyles((theme) => ({
+  button: {
+    color: "#212121",
+  },
+  black: {
+    color: "#212121",
+  },
+}));
 const Rightside = () => {
+  // language
+  const { t } = useTranslation();
+  //styles
+  const classes = useStyles();
   // react-hooks
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
   const history = useHistory();
   const [IsMenuShown, setIsMenuShown] = useState(false);
-  // language
-  const { t } = useTranslation();
 
   // functions
   const navigateToContactPage = () => {
@@ -51,7 +62,11 @@ const Rightside = () => {
     <div className={styles.rightside}>
       <div className={styles.buttons}>
         {!userInfo ? (
-          <Button onClick={openModal} color="inherit">
+          <Button
+            className={classes.button}
+            onClick={openModal}
+            color="inherit"
+          >
             {t("login")}
           </Button>
         ) : (
@@ -72,20 +87,27 @@ const Rightside = () => {
           >
             <ListItem>
               <ListItemIcon>
-                <EmailIcon className={styles.emailIcon} />
+                <EmailIcon className={classes.black} />
               </ListItemIcon>
-              <ListItemText primary={userInfo.email} />
+              <ListItemText
+                className={classes.black}
+                primary={userInfo.email}
+              />
             </ListItem>
-            <ListItem button onClick={makeUserLogout}>
+            <ListItem button className={classes.black} onClick={makeUserLogout}>
               <ListItemIcon>
-                <LogOut className="logoutIcon" />
+                <LogOut className={classes.black} />
               </ListItemIcon>
               <ListItemText primary={t("logout")} />
             </ListItem>
           </div>
         )}
 
-        <Button color="inherit" onClick={navigateToContactPage}>
+        <Button
+          className={classes.button}
+          color="inherit"
+          onClick={navigateToContactPage}
+        >
           {t("contactButton")}
         </Button>
       </div>

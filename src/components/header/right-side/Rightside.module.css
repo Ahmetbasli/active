@@ -19,7 +19,7 @@
 .popOver {
   border-radius: 5px;
   position: absolute;
-  background-color: #3f51b5;
+  background-color: white;
   top: 50px;
   padding: 15px;
 }

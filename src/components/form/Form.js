@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSelector } from "react-redux";
@@ -8,7 +8,6 @@ import { selectLanguage } from "../../slices/userSlice";
 import { contactFormSchema } from "../../validations/contactForm";
 //language
 import { useTranslation } from "react-i18next";
-
 //styles
 import styles from "./Form.module.css";
 import { TextField, Button } from "@material-ui/core";
@@ -19,30 +18,15 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   submitButton: {
     width: "40%",
+    backgroundColor: "#212121",
   },
 }));
+
 const Form = ({ countries }) => {
-  const siteLanguage = useSelector(selectLanguage);
+  //styles
+  const classes = useStyles();
   //language
   const { t } = useTranslation();
-  const formattedCountries = countries.map((country) => ({
-    id: country.id,
-    name: t(country.id),
-  }));
-
-  const [selectedCountry, setSelectedCountry] = useState();
-  const [countryFieldErr, setCountryFieldErr] = useState(false);
-  const [isSubmitClicked, setIsSubmitClicked] = useState(false);
-  useEffect(() => {
-    setSelectedCountry(null);
-  }, [siteLanguage]);
-  /* 
-  useEffect(() => {
-    if (selectedCountry) {
-      set;
-    }
-  }, [selectedCountry]); */
-
   //validation
   const {
     handleSubmit,
@@ -51,10 +35,29 @@ const Form = ({ countries }) => {
   } = useForm({
     resolver: yupResolver(contactFormSchema),
   });
+  // react-hooks
+  const formattedCountries = useMemo(
+    () =>
+      countries.map((country) => ({
+        id: country.id,
+        name: t(country.id),
+      })),
+    [countries]
+  );
+  const [selectedCountry, setSelectedCountry] = useState();
+  const [countryFieldErr, setCountryFieldErr] = useState(false);
+  const [isSubmitClicked, setIsSubmitClicked] = useState(false);
+  const siteLanguage = useSelector(selectLanguage);
 
-  //styles
-  const classes = useStyles();
   // functions
+  useEffect(() => {
+    setSelectedCountry(null);
+  }, [siteLanguage]);
+
+  const handleCountryFieldChange = (event, newValue) => {
+    if (isSubmitClicked) setCountryFieldErr(!!!newValue);
+    setSelectedCountry(newValue);
+  };
 
   const formSubmitHandler = (data) => {
     setIsSubmitClicked(true);
@@ -66,11 +69,6 @@ const Form = ({ countries }) => {
     const formatedFormData = { ...data, country: selectedCountry };
   };
 
-  const handleCountryFieldChange = (event, newValue) => {
-    if (isSubmitClicked) setCountryFieldErr(!!!newValue);
-
-    setSelectedCountry(newValue);
-  };
   return (
     <div className={styles.formWrapper}>
       <form onSubmit={handleSubmit(formSubmitHandler)} className={styles.form}>
@@ -82,7 +80,6 @@ const Form = ({ countries }) => {
             <TextField
               {...field}
               label="name"
-              variant="filled"
               error={!!errors.name}
               helperText={errors.name ? errors.name?.message : " "}
             />
@@ -96,7 +93,6 @@ const Form = ({ countries }) => {
             <TextField
               {...field}
               label="Email"
-              variant="filled"
               error={!!errors.email}
               helperText={errors.email ? errors.email?.message : " "}
             />
@@ -110,7 +106,6 @@ const Form = ({ countries }) => {
             <TextField
               {...field}
               label="phone number"
-              variant="filled"
               error={!!errors.phoneNumber}
               helperText={
                 errors.phoneNumber ? errors.phoneNumber?.message : " "
@@ -132,7 +127,6 @@ const Form = ({ countries }) => {
             <TextField
               className={classes.countryField}
               {...params}
-              variant="filled"
               label={t("countryName")}
               error={countryFieldErr}
               helperText={countryFieldErr ? "error " : " "}
@@ -147,7 +141,6 @@ const Form = ({ countries }) => {
             <TextField
               {...field}
               label="message"
-              variant="filled"
               error={!!errors.country}
               helperText={errors.country ? errors.country?.message : " "}
               multiline

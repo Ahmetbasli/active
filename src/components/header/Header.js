@@ -9,11 +9,17 @@ import RightSideHamburger from "./right-side-hamburger/RightSideHamburger";
 // styles
 import AppBar from "@material-ui/core/AppBar";
 import styles from "./Header.module.css";
-
+import { makeStyles } from "@material-ui/core/styles";
+const useStyles = makeStyles((theme) => ({
+  submitButton: {
+    backgroundColor: "white",
+  },
+}));
 const Header = () => {
   // react-hooks
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
+  //styles
+  const classes = useStyles();
   // functions
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -26,7 +32,11 @@ const Header = () => {
   }, []);
   return (
     <div className={styles.header}>
-      <AppBar position="static">
+      <AppBar
+        className={classes.submitButton}
+        color="default"
+        position="static"
+      >
         <div className={styles.toolbar}>
           <Leftside />
           {screenWidth > 768 ? <Rightside /> : <RightSideHamburger />}
