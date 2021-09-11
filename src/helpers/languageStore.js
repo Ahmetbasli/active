@@ -15,6 +15,15 @@ const translationsEn = {
   password: "Password",
   footer: "Footer",
   languageOption: "Use in English",
+  //country names
+  TR: "Turkey",
+  US: "United States of America",
+  GB: "United Kingdom",
+  DE: "Germany",
+  SE: "Sweden",
+  KE: "Kenya",
+  BR: "Brazil",
+  ZW: "Zimbabwe",
 };
 
 const translationsTr = {
@@ -31,6 +40,15 @@ const translationsTr = {
   password: "Şifre",
   footer: "Alt Bilgi",
   languageOption: "Türkçe kullan",
+  //country names
+  TR: "Türkiye",
+  US: "Amerika Birleşik Devletleri",
+  GB: "Birleşik Krallık",
+  DE: "Almanya",
+  SE: "İsveç",
+  KE: "Kenya",
+  BR: "Brazilya",
+  ZW: "Zimbabwe",
 };
 
 i18n.use(initReactI18next).init({
