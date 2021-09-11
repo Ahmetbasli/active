@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useSelector } from "react-redux";
+//store
+import { selectLanguage } from "../../slices/userSlice";
 //validation
 import { contactFormSchema } from "../../validations/contactForm";
 //language
@@ -17,11 +20,29 @@ const useStyles = makeStyles((theme) => ({
   submitButton: {
     width: "40%",
   },
-  countryField: {
-    marginBottom: "20px",
-  },
 }));
 const Form = ({ countries }) => {
+  const siteLanguage = useSelector(selectLanguage);
+  //language
+  const { t } = useTranslation();
+  const formattedCountries = countries.map((country) => ({
+    id: country.id,
+    name: t(country.id),
+  }));
+
+  const [selectedCountry, setSelectedCountry] = useState();
+  const [countryFieldErr, setCountryFieldErr] = useState(false);
+  const [isSubmitClicked, setIsSubmitClicked] = useState(false);
+  useEffect(() => {
+    setSelectedCountry(null);
+  }, [siteLanguage]);
+  /* 
+  useEffect(() => {
+    if (selectedCountry) {
+      set;
+    }
+  }, [selectedCountry]); */
+
   //validation
   const {
     handleSubmit,
@@ -30,21 +51,26 @@ const Form = ({ countries }) => {
   } = useForm({
     resolver: yupResolver(contactFormSchema),
   });
-  //language
-  const { t } = useTranslation();
+
   //styles
   const classes = useStyles();
   // functions
+
   const formSubmitHandler = (data) => {
-    console.log("ahmet");
-    console.log("Form data is ", data);
+    setIsSubmitClicked(true);
+    if (!selectedCountry) {
+      setCountryFieldErr(true);
+      return null;
+    }
+
+    const formatedFormData = { ...data, country: selectedCountry };
   };
 
-  const getOpObj = (option) => {
-    if (!option._id) option = options.find((op) => op._id === option);
-    return option;
-  };
+  const handleCountryFieldChange = (event, newValue) => {
+    if (isSubmitClicked) setCountryFieldErr(!!!newValue);
 
+    setSelectedCountry(newValue);
+  };
   return (
     <div className={styles.formWrapper}>
       <form onSubmit={handleSubmit(formSubmitHandler)} className={styles.form}>
@@ -92,25 +118,27 @@ const Form = ({ countries }) => {
             />
           )}
         />
-        <Controller
-          name="country"
-          as={
-            <Autocomplete
-              options={options}
-              getOptionLabel={(option) => getOpObj(option).name}
-              getOptionSelected={(option, value) => {
-                return option._id === getOpObj(value)._id;
-              }}
-              renderInput={(params) => (
-                <TextField {...params} label="Country" />
-              )}
-            />
-          }
-          onChange={([, obj]) => getOpObj(obj)._id}
-          control={control}
-          defaultValue={options[0]}
-        />
 
+        <Autocomplete
+          options={formattedCountries}
+          id="controlled-demo"
+          value={selectedCountry ? selectedCountry : null}
+          onChange={(event, newValue) => {
+            handleCountryFieldChange(event, newValue);
+          }}
+          getOptionLabel={(option) => option?.name}
+          getOptionSelected={(option, value) => option.id === value.id}
+          renderInput={(params) => (
+            <TextField
+              className={classes.countryField}
+              {...params}
+              variant="filled"
+              label={t("countryName")}
+              error={countryFieldErr}
+              helperText={countryFieldErr ? "error " : " "}
+            />
+          )}
+        />
         <Controller
           name="message"
           control={control}

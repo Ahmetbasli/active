@@ -11,9 +11,5 @@ export const contactFormSchema = yup.object().shape({
     .max(25)
     .required()
     .matches(phoneRegExp, "Phone number is not valid"),
-  country: yup.object().shape({
-    id: yup.string(),
-    name: yup.string(),
-  }),
   message: yup.string(),
 });

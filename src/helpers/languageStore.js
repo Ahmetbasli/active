@@ -15,6 +15,7 @@ const translationsEn = {
   password: "Password",
   footer: "Footer",
   languageOption: "Use in English",
+  countryName: "Country Name",
   //country names
   TR: "Turkey",
   US: "United States of America",
@@ -40,6 +41,7 @@ const translationsTr = {
   password: "Şifre",
   footer: "Alt Bilgi",
   languageOption: "Türkçe kullan",
+  countryName: "Ülke Adı",
   //country names
   TR: "Türkiye",
   US: "Amerika Birleşik Devletleri",
