@@ -29,7 +29,7 @@ const translationsEn = {
   titleErr: "title is not valid",
   nameErr: "name is not valid",
   emailErr: "email is not valid",
-  phoneErr: "phone number is not valid",
+  phoneNumberErr: "phone number is not valid",
   countryErr: "select a country",
   //form field names
   title: "Title",
@@ -39,6 +39,9 @@ const translationsEn = {
   countryName: "Country Name",
   message: "Message",
   send: "send",
+  required: "(required)",
+  //snackbar messages
+  formSubmit: "You successfully send the form",
 };
 
 const translationsTr = {
@@ -72,13 +75,15 @@ const translationsTr = {
   countryName: "Ülke adı",
   message: "Mesaj",
   send: "Gönder",
-
+  required: "(zorunlu)",
   //validations
   titleErr: "başlık uygun değil",
   nameErr: "isim uygun değil",
   emailErr: "email uygun değil",
-  phoneErr: "telefon numarası uygun değil",
+  phoneNumberErr: "telefon numarası uygun değil",
   countryErr: "bir ülke seçiniz",
+  //snackbar messages
+  formSubmit: "Formu başarıyla gönderdiniz",
 };
 
 i18n.use(initReactI18next).init({

@@ -9,17 +9,15 @@ import { useTranslation } from "react-i18next";
 import styles from "./ContactUs.module.css";
 
 const ContactUs = () => {
+  // react-hooks
   const [countries, setCountries] = useState([]);
-  console.log(countries);
   //functions
   useEffect(() => {
     (async () => {
       try {
         const response = await axios.get("countryList.json");
         setCountries(response.data.countryList);
-      } catch (err) {
-        console.log(err);
-      }
+      } catch (err) {}
     })();
   }, []);
 
