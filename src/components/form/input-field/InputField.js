@@ -1,7 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
+//validation
 import { Controller } from "react-hook-form";
-//store
 //language
 import { useTranslation } from "react-i18next";
 //styles
@@ -28,12 +27,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const InputField = ({ control, name, IsSubmitButtonClicked, errors }) => {
+const InputField = ({ control, name, isSubmitButtonClicked, errors }) => {
   //styles
   const classes = useStyles();
   //language
   const { t } = useTranslation();
-
   return (
     <>
       <Controller
@@ -42,7 +40,7 @@ const InputField = ({ control, name, IsSubmitButtonClicked, errors }) => {
         control={control}
         render={({ field }) => {
           const successStyle =
-            IsSubmitButtonClicked && !!!errors[name] ? classes.success : "";
+            isSubmitButtonClicked && !!!errors[name] ? classes.success : "";
           const isNameEqualMessage = name === "message";
           return (
             <TextField

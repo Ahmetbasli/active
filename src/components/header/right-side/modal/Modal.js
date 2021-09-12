@@ -1,52 +1,55 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 // store
 import {
   selectIsLoginModalOpen,
   setUser,
   toggleIsLoginModalOpen,
-  selectLanguage,
 } from "../../../../slices/userSlice";
+//components
+import InputField from "../../../form/input-field/InputField";
+//validation
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { loginSchema } from "../../../../validations/contactForm";
 // language
 import { useTranslation } from "react-i18next";
 // styles
 import { makeStyles } from "@material-ui/core/styles";
-
-import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 const useStyles = makeStyles((theme) => ({
-  textField: {
-    marginBottom: "24px",
+  wrap: {
+    display: "flex",
+    flexDirection: "column",
   },
 }));
 const Modal = () => {
+  // styles
+  const classes = useStyles();
+  // language
+  const { t } = useTranslation();
+  // validation
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
   // react-hooks
   const IsLoginModalOpen = useSelector(selectIsLoginModalOpen);
   const dispatch = useDispatch();
-  const nameField = useRef();
-  const emailField = useRef();
-  const passwordField = useRef();
-  // language
-  const { t } = useTranslation();
-  // styles
-  const classes = useStyles();
-
   // functions
   const closeModal = () => {
     dispatch(toggleIsLoginModalOpen(false));
   };
 
-  const sendFieldsData = () => {
-    const name = nameField.current.value;
-    const userInfo = {
-      name: name.charAt(0).toUpperCase() + name.slice(1).toLowerCase(),
-      email: emailField.current.value,
-      password: passwordField.current.value,
-    };
+  const handleFormSubmit = (userInfo) => {
+    console.log(userInfo);
     dispatch(setUser(userInfo));
     sessionStorage.setItem("user", JSON.stringify(userInfo));
     dispatch(toggleIsLoginModalOpen(false));
@@ -55,48 +58,35 @@ const Modal = () => {
   return (
     <div>
       <Dialog
+        fullWidth
         open={IsLoginModalOpen}
         onClose={closeModal}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">{t("login")}</DialogTitle>
-        <DialogContent>
-          <TextField
-            className={classes.textField}
-            margin="normal"
-            id="name"
-            label={t("name")}
-            type="text"
-            fullWidth
-            inputRef={nameField}
-          />
-          <TextField
-            className={classes.textField}
-            margin="normal"
-            id="emailAdress"
-            label={t("emailAdress")}
-            type="email"
-            inputRef={emailField}
-            fullWidth
-          />
-          <TextField
-            className={classes.textField}
-            margin="normal"
-            id="password"
-            label={t("password")}
-            type="password"
-            inputRef={passwordField}
-            fullWidth
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={closeModal} color="primary">
-            {t("cancel")}
-          </Button>
-          <Button onClick={sendFieldsData} color="primary">
-            {t("login")}
-          </Button>
-        </DialogActions>
+        <form onSubmit={handleSubmit(handleFormSubmit)}>
+          <DialogTitle id="form-dialog-title">{t("login")}</DialogTitle>
+          <DialogContent>
+            <div className={classes.wrap}>
+              {["name", "email", "password"].map((name) => (
+                <InputField
+                  key={name}
+                  clasName={classes.wrap}
+                  control={control}
+                  name={name}
+                  errors={errors}
+                />
+              ))}
+            </div>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={closeModal} color="primary">
+              {t("cancel")}
+            </Button>
+            <Button type="submit" color="primary">
+              {t("login")}
+            </Button>
+          </DialogActions>
+        </form>
       </Dialog>
     </div>
   );

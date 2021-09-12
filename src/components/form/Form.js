@@ -1,10 +1,11 @@
 import React, { useMemo, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+
 import { useSelector } from "react-redux";
 //store
 import { selectLanguage, selectUser } from "../../slices/userSlice";
 //validation
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { contactFormSchema } from "../../validations/contactForm";
 //language
 import { useTranslation } from "react-i18next";
@@ -35,11 +36,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const Form = ({ countries }) => {
-  //styles
+  // styles
   const classes = useStyles();
-  //language
+  // language
   const { t } = useTranslation();
-  //validation
+  // validation
   const {
     handleSubmit,
     control,
@@ -59,7 +60,7 @@ const Form = ({ countries }) => {
   );
   const [selectedCountry, setSelectedCountry] = useState();
   const [countryFieldErr, setCountryFieldErr] = useState(false);
-  const [IsSubmitButtonClicked, setIsSubmitButtonClicked] = useState(false);
+  const [isSubmitButtonClicked, setIsSubmitButtonClicked] = useState(false);
   const [isSubmitAchieved, setIsSubmitAchieved] = useState(false);
   const [isUserFillingFirstTime, setIsUserFillingFirstTime] = useState(true);
   const siteLanguage = useSelector(selectLanguage);
@@ -71,10 +72,10 @@ const Form = ({ countries }) => {
       setValue("email", userInfo.email, { shouldValidate: true });
     } else {
       setValue("name", "", {
-        shouldValidate: IsSubmitButtonClicked ? true : false,
+        shouldValidate: isSubmitButtonClicked ? true : false,
       });
       setValue("email", "", {
-        shouldValidate: IsSubmitButtonClicked ? true : false,
+        shouldValidate: isSubmitButtonClicked ? true : false,
       });
     }
   }, [userInfo]);
@@ -82,13 +83,15 @@ const Form = ({ countries }) => {
   useEffect(() => {
     setSelectedCountry(null);
   }, [siteLanguage]);
-
-  const handleCountryFieldChange = (_, newValue) => {
-    if (!isUserFillingFirstTime) setCountryFieldErr(!!!newValue);
+  const handleCountryFieldChange = (event, newValue) => {
+    if (!isUserFillingFirstTime) {
+      setCountryFieldErr(!!!newValue);
+    }
     setSelectedCountry(newValue);
   };
 
   const handleSubmitButtonClicked = () => {
+    setIsUserFillingFirstTime(false);
     setIsSubmitButtonClicked(true);
     if (!selectedCountry) {
       setCountryFieldErr(true);
@@ -96,9 +99,11 @@ const Form = ({ countries }) => {
   };
 
   const handleFormSubmit = (data) => {
-    const formatedFormData = { ...data, country: selectedCountry };
-    setIsSubmitAchieved(true);
-    console.log(formatedFormData);
+    if (!countryFieldErr) {
+      const formatedFormData = { ...data, country: selectedCountry };
+      setIsSubmitAchieved(true);
+      console.log(formatedFormData);
+    }
   };
 
   const handleSnackBarClose = (newState) => {
@@ -112,7 +117,6 @@ const Form = ({ countries }) => {
     setValue("message", "");
     setIsSubmitAchieved(newState);
     setIsSubmitButtonClicked(false);
-    setIsUserFillingFirstTime(false);
   };
   return (
     <div className={styles.formWrapper}>
@@ -122,7 +126,7 @@ const Form = ({ countries }) => {
             key={name}
             control={control}
             name={name}
-            IsSubmitButtonClicked={IsSubmitButtonClicked}
+            isSubmitButtonClicked={isSubmitButtonClicked}
             errors={errors}
           />
         ))}
@@ -137,7 +141,7 @@ const Form = ({ countries }) => {
           getOptionSelected={(option, value) => option.id === value.id}
           renderInput={(params) => {
             const successStyle =
-              IsSubmitButtonClicked && !!!countryFieldErr
+              isSubmitButtonClicked && !!!countryFieldErr
                 ? classes.success
                 : "";
             return (
@@ -146,11 +150,7 @@ const Form = ({ countries }) => {
                 {...params}
                 label={t("countryName") + `*${t("required")}`}
                 error={countryFieldErr}
-                helperText={
-                  IsSubmitButtonClicked && countryFieldErr
-                    ? t("countryErr")
-                    : " "
-                }
+                helperText={countryFieldErr ? t("countryErr") : " "}
               />
             );
           }}
@@ -158,7 +158,7 @@ const Form = ({ countries }) => {
         <InputField
           control={control}
           name="message"
-          IsSubmitButtonClicked={IsSubmitButtonClicked}
+          isSubmitButtonClicked={isSubmitButtonClicked}
           errors={errors}
         />
         <Button
@@ -172,10 +172,12 @@ const Form = ({ countries }) => {
         >
           {t("send")}
         </Button>
-        <SnackBar
-          open={isSubmitAchieved}
-          handleSnackBarClose={handleSnackBarClose}
-        />
+        {isSubmitAchieved && (
+          <SnackBar
+            open={isSubmitAchieved}
+            handleSnackBarClose={handleSnackBarClose}
+          />
+        )}
       </form>
     </div>
   );

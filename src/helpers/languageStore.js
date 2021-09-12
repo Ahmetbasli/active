@@ -11,7 +11,6 @@ const translationsEn = {
   logout: "Log out",
   emailAdress: "Email Address",
   cancel: "Cancel",
-  name: "Name",
   password: "Password",
   footer: "Footer",
   languageOption: "Use in English",
