@@ -8,6 +8,7 @@ import {
 } from "../../../../slices/userSlice";
 //components
 import InputField from "../../../form/input-field/InputField";
+import DropDown from "../../../header/right-side/dropdown/Dropdown";
 //validation
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -77,6 +78,7 @@ const Modal = () => {
                 />
               ))}
             </div>
+            <DropDown />
           </DialogContent>
           <DialogActions>
             <Button onClick={closeModal} color="primary">
