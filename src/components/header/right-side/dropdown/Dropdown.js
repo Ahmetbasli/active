@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 // store
 import { selectLanguage, adjustLanguage } from "../../../../slices/userSlice";
 // language
+import { useTranslation } from "react-i18next";
 import i18n from "../../../../helpers/languageStore";
 // style
 import { makeStyles } from "@material-ui/core/styles";
@@ -26,13 +27,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ControlledOpenSelect() {
+  // styles
+  const classes = useStyles();
+  // language
+  const { t } = useTranslation();
   // react-hooks
   const dispatch = useDispatch();
   const siteLanguage = useSelector(selectLanguage);
   const [open, setOpen] = useState(false);
-  // styles
-  const classes = useStyles();
-
   // functions
   const handleChange = (event) => {
     dispatch(adjustLanguage(event.target.value));
@@ -54,7 +56,7 @@ export default function ControlledOpenSelect() {
           className={classes.label}
           id="demo-controlled-open-select-label"
         >
-          Language
+          {t("languageLabel")}
         </InputLabel>
         <Select
           className={classes.label}
@@ -67,7 +69,7 @@ export default function ControlledOpenSelect() {
           onChange={handleChange}
         >
           <MenuItem value={"en"}>English</MenuItem>
-          <MenuItem value={"tr"}>Turkish</MenuItem>
+          <MenuItem value={"tr"}>Türkçe</MenuItem>
         </Select>
       </FormControl>
     </div>

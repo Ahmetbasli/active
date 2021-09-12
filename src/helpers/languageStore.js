@@ -15,7 +15,7 @@ const translationsEn = {
   password: "Password",
   footer: "Footer",
   languageOption: "Use in English",
-  countryName: "Country Name",
+  languageLabel: "Language",
   //country names
   TR: "Turkey",
   US: "United States of America",
@@ -25,6 +25,20 @@ const translationsEn = {
   KE: "Kenya",
   BR: "Brazil",
   ZW: "Zimbabwe",
+  //validations
+  titleErr: "title is not valid",
+  nameErr: "name is not valid",
+  emailErr: "email is not valid",
+  phoneErr: "phone number is not valid",
+  countryErr: "select a country",
+  //form field names
+  title: "Title",
+  name: "Name",
+  email: "Email",
+  phoneNumber: "Phone number",
+  countryName: "Country Name",
+  message: "Message",
+  send: "send",
 };
 
 const translationsTr = {
@@ -37,11 +51,10 @@ const translationsTr = {
   logout: "Çıkış yap",
   emailAdress: "Email Adresi",
   cancel: "Çıkış yap",
-  name: "İsim",
   password: "Şifre",
   footer: "Alt Bilgi",
   languageOption: "Türkçe kullan",
-  countryName: "Ülke Adı",
+  languageLabel: "Dil",
   //country names
   TR: "Türkiye",
   US: "Amerika Birleşik Devletleri",
@@ -51,6 +64,21 @@ const translationsTr = {
   KE: "Kenya",
   BR: "Brazilya",
   ZW: "Zimbabwe",
+  //form field names
+  title: "Başlık",
+  name: "İsim",
+  email: "Email",
+  phoneNumber: "Telefon numarası",
+  countryName: "Ülke adı",
+  message: "Mesaj",
+  send: "Gönder",
+
+  //validations
+  titleErr: "başlık uygun değil",
+  nameErr: "isim uygun değil",
+  emailErr: "email uygun değil",
+  phoneErr: "telefon numarası uygun değil",
+  countryErr: "bir ülke seçiniz",
 };
 
 i18n.use(initReactI18next).init({

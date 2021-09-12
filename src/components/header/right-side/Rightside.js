@@ -56,6 +56,7 @@ const Rightside = () => {
   const makeUserLogout = () => {
     dispatch(setUser(null));
     sessionStorage.removeItem("user");
+    setIsMenuShown(false);
   };
 
   return (
@@ -75,7 +76,7 @@ const Rightside = () => {
             onMouseEnter={() => setIsMenuShown(true)}
             onMouseLeave={() => setIsMenuShown(false)}
           >
-            <h4>{userInfo.name}</h4>
+            <p>{userInfo.name}</p>
             <ExpandMoreIcon />
           </div>
         )}

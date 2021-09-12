@@ -1,10 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // store
 import {
   selectIsLoginModalOpen,
   setUser,
   toggleIsLoginModalOpen,
+  selectLanguage,
 } from "../../../../slices/userSlice";
 // language
 import { useTranslation } from "react-i18next";
@@ -62,8 +63,7 @@ const Modal = () => {
         <DialogContent>
           <TextField
             className={classes.textField}
-            autoFocus
-            margin="dense"
+            margin="normal"
             id="name"
             label={t("name")}
             type="text"
@@ -72,8 +72,7 @@ const Modal = () => {
           />
           <TextField
             className={classes.textField}
-            autoFocus
-            margin="dense"
+            margin="normal"
             id="emailAdress"
             label={t("emailAdress")}
             type="email"
@@ -82,8 +81,7 @@ const Modal = () => {
           />
           <TextField
             className={classes.textField}
-            autoFocus
-            margin="dense"
+            margin="normal"
             id="password"
             label={t("password")}
             type="password"

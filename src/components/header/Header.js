@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-// store
-import { selectLanguage } from "../../slices/userSlice";
 // components
 import Rightside from "./right-side/Rightside";
 import Leftside from "./left-side/Leftside";

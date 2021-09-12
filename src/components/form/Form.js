@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSelector } from "react-redux";
 //store
-import { selectLanguage } from "../../slices/userSlice";
+import { selectLanguage, selectUser } from "../../slices/userSlice";
 //validation
 import { contactFormSchema } from "../../validations/contactForm";
 //language
@@ -20,8 +20,21 @@ const useStyles = makeStyles((theme) => ({
     width: "40%",
     backgroundColor: "#212121",
   },
+  nameField: {
+    borderColor: "green",
+  },
+  success: {
+    "& .MuiFormLabel-root": {
+      color: "green",
+    },
+    "& .MuiInput-underline:before": {
+      borderColor: "green",
+    },
+    "& .MuiInput-underline:after": {
+      borderColor: "green",
+    },
+  },
 }));
-
 const Form = ({ countries }) => {
   //styles
   const classes = useStyles();
@@ -31,6 +44,7 @@ const Form = ({ countries }) => {
   const {
     handleSubmit,
     control,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(contactFormSchema),
@@ -42,76 +56,126 @@ const Form = ({ countries }) => {
         id: country.id,
         name: t(country.id),
       })),
-    [countries]
+    [countries, t]
   );
   const [selectedCountry, setSelectedCountry] = useState();
   const [countryFieldErr, setCountryFieldErr] = useState(false);
-  const [isSubmitClicked, setIsSubmitClicked] = useState(false);
+  const [IsSubmitButtonClicked, setIsSubmitButtonClicked] = useState(false);
   const siteLanguage = useSelector(selectLanguage);
-
+  const userInfo = useSelector(selectUser);
   // functions
+  useEffect(() => {
+    if (userInfo) {
+      setValue("name", userInfo.name, { shouldValidate: true });
+      setValue("email", userInfo.email, { shouldValidate: true });
+      setSelectedCountry(null);
+    } else {
+      setValue("name", "", {
+        shouldValidate: IsSubmitButtonClicked ? true : false,
+      });
+      setValue("email", "", {
+        shouldValidate: IsSubmitButtonClicked ? true : false,
+      });
+      setSelectedCountry(null);
+    }
+  }, [userInfo]);
+
   useEffect(() => {
     setSelectedCountry(null);
   }, [siteLanguage]);
 
   const handleCountryFieldChange = (event, newValue) => {
-    if (isSubmitClicked) setCountryFieldErr(!!!newValue);
+    if (IsSubmitButtonClicked) setCountryFieldErr(!!!newValue);
     setSelectedCountry(newValue);
   };
 
   const formSubmitHandler = (data) => {
-    setIsSubmitClicked(true);
+    const formatedFormData = { ...data, country: selectedCountry };
+    console.log(formatedFormData);
+  };
+  const handleSubmitButtonClicked = () => {
+    setIsSubmitButtonClicked(true);
     if (!selectedCountry) {
       setCountryFieldErr(true);
       return null;
     }
-
-    const formatedFormData = { ...data, country: selectedCountry };
   };
-
+  console.log(errors.title);
   return (
     <div className={styles.formWrapper}>
       <form onSubmit={handleSubmit(formSubmitHandler)} className={styles.form}>
         <Controller
-          name="name"
+          name="title"
           control={control}
-          defaultValue="ahmet"
-          render={({ field }) => (
-            <TextField
-              {...field}
-              label="name"
-              error={!!errors.name}
-              helperText={errors.name ? errors.name?.message : " "}
-            />
-          )}
+          render={({ field }) => {
+            const successStyle =
+              IsSubmitButtonClicked && !!!errors.title ? classes.success : "";
+            return (
+              <TextField
+                {...field}
+                className={successStyle}
+                label={t("title") + "*"}
+                error={!!errors.title}
+                helperText={errors.title ? t("titleErr") : " "}
+              />
+            );
+          }}
+        />
+        <Controller
+          name="name"
+          defaultValue=""
+          control={control}
+          render={({ field }) => {
+            const successStyle =
+              IsSubmitButtonClicked && !!!errors.name ? classes.success : "";
+            return (
+              <TextField
+                {...field}
+                className={successStyle}
+                label={t("name") + "*"}
+                error={!!errors.name}
+                helperText={errors.name ? t("nameErr") : " "}
+              />
+            );
+          }}
         />
         <Controller
           name="email"
+          defaultValue=""
           control={control}
-          defaultValue="ahmet@gmdsömgsd.com"
-          render={({ field }) => (
-            <TextField
-              {...field}
-              label="Email"
-              error={!!errors.email}
-              helperText={errors.email ? errors.email?.message : " "}
-            />
-          )}
+          render={({ field }) => {
+            const successStyle =
+              IsSubmitButtonClicked && !!!errors.email ? classes.success : "";
+            return (
+              <TextField
+                {...field}
+                className={successStyle}
+                label={t("email") + "*"}
+                error={!!errors.email}
+                helperText={errors.email ? t("emailErr") : " "}
+              />
+            );
+          }}
         />
         <Controller
           name="phoneNumber"
           control={control}
-          defaultValue="432423"
-          render={({ field }) => (
-            <TextField
-              {...field}
-              label="phone number"
-              error={!!errors.phoneNumber}
-              helperText={
-                errors.phoneNumber ? errors.phoneNumber?.message : " "
-              }
-            />
-          )}
+          defaultValue=""
+          render={({ field }) => {
+            const successStyle =
+              IsSubmitButtonClicked && !!!errors.phoneNumber
+                ? classes.success
+                : "";
+            return (
+              <TextField
+                className={successStyle}
+                {...field}
+                label={t("phoneNumber") + "*"}
+                error={!!errors.phoneNumber}
+                helperText={errors.phoneNumber ? t("phoneErr") : " "}
+              />
+            );
+          }}
         />
 
         <Autocomplete
@@ -123,30 +187,40 @@ const Form = ({ countries }) => {
           }}
           getOptionLabel={(option) => option?.name}
           getOptionSelected={(option, value) => option.id === value.id}
-          renderInput={(params) => (
-            <TextField
-              className={classes.countryField}
-              {...params}
-              label={t("countryName")}
-              error={countryFieldErr}
-              helperText={countryFieldErr ? "error " : " "}
-            />
-          )}
+          renderInput={(params) => {
+            const successStyle =
+              IsSubmitButtonClicked && !!!countryFieldErr
+                ? classes.success
+                : "";
+            return (
+              <TextField
+                className={successStyle}
+                {...params}
+                label={t("countryName") + "*"}
+                error={countryFieldErr}
+                helperText={countryFieldErr ? t("countryErr") : " "}
+              />
+            );
+          }}
         />
         <Controller
           name="message"
           control={control}
-          defaultValue="message"
-          render={({ field }) => (
-            <TextField
-              {...field}
-              label="message"
-              error={!!errors.country}
-              helperText={errors.country ? errors.country?.message : " "}
-              multiline
-              rows={4}
-            />
-          )}
+          render={({ field }) => {
+            const successStyle =
+              IsSubmitButtonClicked && !!!errors.message ? classes.success : "";
+            return (
+              <TextField
+                className={successStyle}
+                {...field}
+                label={t("message")}
+                error={!!errors.country}
+                helperText={errors.country ? t("emailErr") : " "}
+                multiline
+                rows={4}
+              />
+            );
+          }}
         />
 
         <Button
@@ -156,8 +230,9 @@ const Form = ({ countries }) => {
           variant="contained"
           color="primary"
           endIcon={<SendIcon />}
+          onClick={handleSubmitButtonClicked}
         >
-          Send
+          {t("send")}
         </Button>
       </form>
     </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 // language
 import { useTranslation } from "react-i18next";
 //styles
