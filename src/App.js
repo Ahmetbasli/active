@@ -10,17 +10,12 @@ function App() {
     <div className="App">
       <Router>
         <Header />
-        {/* header */}
         <Switch>
-          {/* home */}
           <Route exact path="/">
             <Home />
           </Route>
-
-          {/* contactUs */}
           <Route path="/contact">
             <ContactUs />
-            {/* <ContactUs /> */}
           </Route>
         </Switch>
         <Footer />

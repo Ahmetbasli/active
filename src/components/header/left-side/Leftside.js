@@ -11,12 +11,12 @@ import Typography from "@material-ui/core/Typography";
 import styles from "./Leftside.module.css";
 
 const Leftside = () => {
+  // language
+  const { t } = useTranslation();
   // react-hooks
   const dispatch = useDispatch();
   const history = useHistory();
   const page = useSelector(selectWhichPage);
-  // language
-  const { t } = useTranslation();
 
   // functions
   const navigateToHomePage = () => {

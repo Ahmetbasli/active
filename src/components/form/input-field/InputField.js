@@ -28,9 +28,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const InputField = ({ control, name, isSubmitButtonClicked, errors }) => {
-  //styles
+  // styles
   const classes = useStyles();
-  //language
+  // language
   const { t } = useTranslation();
   return (
     <>

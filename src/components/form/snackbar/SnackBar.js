@@ -14,6 +14,7 @@ const SnackBar = ({ open: isOpen, handleSnackBarClose }) => {
   const { t } = useTranslation();
   // react-hooks
   const [open, setOpen] = useState(isOpen);
+  // functions
   const handleClose = (event, reason) => {
     setOpen(false);
   };

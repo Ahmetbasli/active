@@ -33,10 +33,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const Rightside = () => {
-  // language
-  const { t } = useTranslation();
   //styles
   const classes = useStyles();
+  // language
+  const { t } = useTranslation();
   // react-hooks
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);

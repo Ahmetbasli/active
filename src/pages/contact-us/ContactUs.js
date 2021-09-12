@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // components
 import Form from "../../components/form/Form";
-//axios
+// axios
 import axios from "axios";
 // language
 import { useTranslation } from "react-i18next";
