@@ -51,6 +51,7 @@ const InputField = ({ control, name, isSubmitButtonClicked, errors }) => {
               helperText={errors[name] ? t(`${name}Err`) : " "}
               multiline={isNameEqualMessage}
               rows={isNameEqualMessage ? 4 : 1}
+              type={name === "password" ? "password" : "text"}
             />
           );
         }}
