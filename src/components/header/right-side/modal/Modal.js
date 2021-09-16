@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // store
 import {
@@ -22,6 +22,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
+import { LocalLibraryTwoTone } from "@material-ui/icons";
 const useStyles = makeStyles((theme) => ({
   wrap: {
     display: "flex",
@@ -37,6 +38,7 @@ const Modal = () => {
   const {
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(loginSchema),
@@ -55,6 +57,10 @@ const Modal = () => {
     dispatch(toggleIsLoginModalOpen(false));
   };
 
+  useEffect(() => {
+    reset();
+  }, [IsLoginModalOpen]);
+
   return (
     <div>
       <Dialog
@@ -69,8 +75,8 @@ const Modal = () => {
             <div className={classes.wrap}>
               {["name", "email", "password"].map((name) => (
                 <InputField
-                  key={name}
                   clasName={classes.wrap}
+                  key={name}
                   control={control}
                   name={name}
                   errors={errors}
