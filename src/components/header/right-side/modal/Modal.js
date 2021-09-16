@@ -62,7 +62,7 @@ const Modal = () => {
   }, [IsLoginModalOpen]);
 
   return (
-    <div>
+    <>
       <Dialog
         fullWidth
         open={IsLoginModalOpen}
@@ -95,7 +95,7 @@ const Modal = () => {
           </DialogActions>
         </form>
       </Dialog>
-    </div>
+    </>
   );
 };
 

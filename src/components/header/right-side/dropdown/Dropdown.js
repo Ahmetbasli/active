@@ -50,7 +50,7 @@ export default function ControlledOpenSelect() {
   };
 
   return (
-    <div>
+    <>
       <FormControl className={classes.formControl}>
         <InputLabel
           className={classes.label}
@@ -72,6 +72,6 @@ export default function ControlledOpenSelect() {
           <MenuItem value={"tr"}>Türkçe</MenuItem>
         </Select>
       </FormControl>
-    </div>
+    </>
   );
 }

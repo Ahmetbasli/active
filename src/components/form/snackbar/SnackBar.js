@@ -26,13 +26,13 @@ const SnackBar = ({ open: isOpen, handleSnackBarClose }) => {
     }, 1300);
   }, [isOpen]);
   return (
-    <div>
+    <>
       <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">
           {t("formSubmit")}
         </Alert>
       </Snackbar>
-    </div>
+    </>
   );
 };
 
