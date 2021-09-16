@@ -1,5 +1,4 @@
 import React, { useMemo, useEffect, useState } from "react";
-
 import { useSelector } from "react-redux";
 //store
 import { selectLanguage, selectUser } from "../../slices/userSlice";
@@ -83,6 +82,7 @@ const Form = ({ countries }) => {
   useEffect(() => {
     setSelectedCountry(null);
   }, [siteLanguage]);
+
   const handleCountryFieldChange = (event, newValue) => {
     if (!isUserFillingFirstTime) {
       setCountryFieldErr(!!!newValue);

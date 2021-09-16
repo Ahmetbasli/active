@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+console.log(window.location.pathname);
 const initialState = {
   user: JSON.parse(sessionStorage.getItem("user")),
-  page: "home",
+  page: window.location.pathname === "/" ? "home" : window.location.pathname,
   language: "en",
   IsLoginModalOpen: false,
 };

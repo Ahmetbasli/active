@@ -50,7 +50,6 @@ const Modal = () => {
   };
 
   const handleFormSubmit = (userInfo) => {
-    console.log(userInfo);
     dispatch(setUser(userInfo));
     sessionStorage.setItem("user", JSON.stringify(userInfo));
     dispatch(toggleIsLoginModalOpen(false));
