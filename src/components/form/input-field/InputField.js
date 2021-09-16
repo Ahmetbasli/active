@@ -46,7 +46,7 @@ const InputField = ({ control, name, isSubmitButtonClicked, errors }) => {
           return (
             <TextField
               {...field}
-              className={successStyle}
+              className={!isNameEqualMessage ? successStyle : ""}
               label={t(name) + (isNameEqualMessage ? "" : `*${t("required")}`)}
               error={!!errors[name]}
               helperText={errors[name] ? t(`${name}Err`) : " "}
