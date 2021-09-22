@@ -36,7 +36,7 @@ const Header = () => {
       >
         <div className={styles.toolbar}>
           <Leftside />
-          {screenWidth > 768 ? <Rightside /> : <RightSideHamburger />}
+          {screenWidth > 778 ? <Rightside /> : <RightSideHamburger />}
         </div>
       </AppBar>
     </div>

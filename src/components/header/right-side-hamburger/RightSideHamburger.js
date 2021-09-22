@@ -102,22 +102,24 @@ const RightSİdeHamburger = () => {
         onClose={closeHamburgerMenu}
       >
         <List className={classes.list}>
-          {["Scorp", "contactButton", "thirdPageButton"].map((text, index) => (
-            <ListItem
-              button
-              key={text}
-              onClick={
-                index === 0
-                  ? navigateToHomePage
-                  : () => navigateToRelevantPage(text)
-              }
-            >
-              <ListItemIcon>
-                {index === 0 ? <HomeIcon /> : <ContactMailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={t(text)} />
-            </ListItem>
-          ))}
+          {["homeButton", "contactButton", "thirdPageButton"].map(
+            (text, index) => (
+              <ListItem
+                button
+                key={text}
+                onClick={
+                  index === 0
+                    ? navigateToHomePage
+                    : () => navigateToRelevantPage(text)
+                }
+              >
+                <ListItemIcon>
+                  {index === 0 ? <HomeIcon /> : <ContactMailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={t(text)} />
+              </ListItem>
+            )
+          )}
         </List>
         <Divider />
         {!userInfo ? (

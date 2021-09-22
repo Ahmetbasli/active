@@ -50,6 +50,11 @@ const Rightside = () => {
     dispatch(adjustWhichPage(pageName));
   };
 
+  const navigateToHomePage = () => {
+    history.push("/");
+    dispatch(adjustWhichPage("home"));
+  };
+
   const openModal = () => {
     dispatch(toggleIsLoginModalOpen(true));
   };
@@ -105,16 +110,22 @@ const Rightside = () => {
           </div>
         )}
 
-        {["contactButton", "thirdPageButton"].map((text, index) => (
-          <Button
-            className={classes.button}
-            key={text}
-            color="inherit"
-            onClick={() => navigateToRelevantPage(text)}
-          >
-            {t(text)}
-          </Button>
-        ))}
+        {["homeButton", "contactButton", "thirdPageButton"].map(
+          (text, index) => (
+            <Button
+              className={classes.button}
+              key={text}
+              color="inherit"
+              onClick={
+                index === 0
+                  ? navigateToHomePage
+                  : () => navigateToRelevantPage(text)
+              }
+            >
+              {t(text)}
+            </Button>
+          )
+        )}
       </div>
       <Dropdown />
 
