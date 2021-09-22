@@ -63,6 +63,7 @@ const Modal = () => {
   return (
     <>
       <Dialog
+        disableBackdropClick
         fullWidth
         open={IsLoginModalOpen}
         onClose={closeModal}
