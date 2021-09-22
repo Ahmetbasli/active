@@ -66,9 +66,10 @@ const RightSİdeHamburger = () => {
     setIsHamburgerMenuOpen(false);
   };
 
-  const navigateToContactPage = () => {
-    history.push("/contact");
-    dispatch(adjustWhichPage("contact"));
+  const navigateToRelevantPage = (buttonName) => {
+    const pageName = buttonName.substring(0, buttonName.length - 6);
+    history.push(`/${pageName}`);
+    dispatch(adjustWhichPage(pageName));
     closeHamburgerMenu();
   };
 
@@ -101,11 +102,15 @@ const RightSİdeHamburger = () => {
         onClose={closeHamburgerMenu}
       >
         <List className={classes.list}>
-          {["Scorp", "contactButton"].map((text, index) => (
+          {["Scorp", "contactButton", "thirdPageButton"].map((text, index) => (
             <ListItem
               button
               key={text}
-              onClick={index === 0 ? navigateToHomePage : navigateToContactPage}
+              onClick={
+                index === 0
+                  ? navigateToHomePage
+                  : () => navigateToRelevantPage(text)
+              }
             >
               <ListItemIcon>
                 {index === 0 ? <HomeIcon /> : <ContactMailIcon />}

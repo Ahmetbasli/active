@@ -44,9 +44,10 @@ const Rightside = () => {
   const [IsMenuShown, setIsMenuShown] = useState(false);
 
   // functions
-  const navigateToContactPage = () => {
-    history.push("/contact");
-    dispatch(adjustWhichPage("contact"));
+  const navigateToRelevantPage = (buttonName) => {
+    const pageName = buttonName.substring(0, buttonName.length - 6);
+    history.push(`/${pageName}`);
+    dispatch(adjustWhichPage(pageName));
   };
 
   const openModal = () => {
@@ -104,13 +105,16 @@ const Rightside = () => {
           </div>
         )}
 
-        <Button
-          className={classes.button}
-          color="inherit"
-          onClick={navigateToContactPage}
-        >
-          {t("contactButton")}
-        </Button>
+        {["contactButton", "thirdPageButton"].map((text, index) => (
+          <Button
+            className={classes.button}
+            key={text}
+            color="inherit"
+            onClick={() => navigateToRelevantPage(text)}
+          >
+            {t(text)}
+          </Button>
+        ))}
       </div>
       <Dropdown />
 
