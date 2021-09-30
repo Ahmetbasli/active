@@ -10,7 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import styles from "./Leftside.module.css";
 
-const Leftside = () => {
+const Leftside = ({isDesktop}) => {
   // language
   const { t } = useTranslation();
   // react-hooks
@@ -26,14 +26,14 @@ const Leftside = () => {
 
   return (
     <div className={styles.leftside}>
-      <IconButton
+      {isDesktop && <IconButton
         onClick={navigateToHomePage}
         edge="start"
         color="primary"
         aria-label="menu"
       >
         <img className={styles.icon} src="images/scorp.jpg" alt="logo" />
-      </IconButton>
+      </IconButton>}
       <Typography noWrap variant="h6">
         {page !== "home" ? t(page) : "Scorp"}
       </Typography>

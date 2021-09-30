@@ -34,8 +34,8 @@ const Header = () => {
         color="default"
         position="static"
       >
-        <div className={styles.toolbar}>
-          <Leftside />
+        <div className={screenWidth > 778 ? styles.toolbar: styles.toolbarMobile  }>
+          <Leftside isDesktop={screenWidth > 778 ? true: false  } />
           {screenWidth > 778 ? <Rightside /> : <RightSideHamburger />}
         </div>
       </AppBar>

@@ -33,6 +33,8 @@ import ContactMailIcon from "@material-ui/icons/ContactMail";
 import PersonIcon from "@material-ui/icons/Person";
 import LogOut from "@material-ui/icons/ExitToApp";
 import styles from "./RightSideHamburger.module.css";
+import IconButton from "@material-ui/core/IconButton";
+
 const useStyles = makeStyles({
   list: {
     width: 250,
@@ -101,6 +103,16 @@ const RightSİdeHamburger = () => {
         open={IsHamburgerMenuOpen}
         onClose={closeHamburgerMenu}
       >
+         <IconButton
+         className={styles.homeIcon}
+        onClick={navigateToHomePage}
+        edge="start"
+        color="primary"
+        aria-label="menu"
+      
+      >
+        <img className={styles.icon} src="images/scorp.jpg" alt="logo" />
+      </IconButton>
         <List className={classes.list}>
           {["homeButton", "contactButton", "thirdPageButton"].map(
             (text, index) => (

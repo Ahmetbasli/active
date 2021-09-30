@@ -1,9 +1,16 @@
 .header {
   display: flex;
+  align-items: center;
 }
 
 .toolbar {
   padding: 0 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.toolbarMobile{
+  padding: 14px 18px;
   display: flex;
   justify-content: space-between;
 }
